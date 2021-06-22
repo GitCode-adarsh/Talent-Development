@@ -1,0 +1,175 @@
+<html>
+    <head>
+        <title>Talent DevelopmentN</title>
+        <link rel="shortcut icon" type="image/png" href="covidhero.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="shortcut icon" type="image/png" href="main_logo.png">
+        <script src="main.js"></script></head>
+    </head>
+    <body>
+        <nav class="navbar-inverse my_nav_bar">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <a class="navbar-brand" href="index.html">Talent Development</a>
+                    <!-- class="navbar-brand" href="loginforstudents.html">Student Login</a>-->
+                    </ul>
+                    
+                    </div>        
+                </nav>
+                <form class="container" id="contactForm">
+                <div class="volunteer_form">
+                    <div class="changebg"><h3 class="det" style="text-align:center">Student Talent Registration Form</h1></div>
+                    <h3 id="Thanks"></h3>
+                         <div class="form-group">
+                            <h3 id="Thanks"></h3>
+                            <label>Name:</label> 
+                            <input type="name" class="form-control" id="first-name" placeholder="Enter your First Name:"><br>
+                            <input type="name" class="form-control" id="last-name" placeholder="Enter your Last Name:">
+                        </div>
+                        <div class="form-group">
+                            <label>Email address:</label>       
+                            <input type="email" class="form-control" id="emails" placeholder="name@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Address:</label>       
+                            <input type="address" class="form-control" id="address" placeholder="line1"><br>
+                            <input type="address" class="form-control" id="address1" placeholder="line2"><br>
+                            <input type="address" class="form-control" id="district" placeholder="district"><br>
+                            <input type="address" class="form-control" id="state" placeholder="state"><br>
+                            <input type="pincode" class="form-control" id="pincode" placeholder="PIN code"><br>
+                            <input type="address" class="form-control" id="country" placeholder="country"><br>
+                        </div>
+                        <div class="form-group">
+                            <label>Fathers Name:</label>       
+                            <input type="name" class="form-control" id="fathers-name" placeholder="Enter you Contact No">
+                        </div>
+                        <div class="form-group">
+                            <label>Mother's Name:</label>       
+                            <input type="name" class="form-control" id="mothers-name" placeholder="Enter you Moters name">
+                        </div>
+                        <div class="form-group">
+                            <label>Password:</label>       
+                            <input type="password" class="form-control" id="password" placeholder="Enter your pass:">
+                        </div>
+                        <div class="form-group">
+                            <label>Talent Name:</label>       
+                           <select name="Talent" class="form-control" id="Talent-form">
+                               <option value="select">select</option>
+                               <option value="singing">singing</option>
+                               <option value="dancing">dancing</option>
+                               <option value="painting">painting</option>
+                               <option value="drawinandsketching">drawinandsketching</option>
+                               <option value="cooking">cooking</option>
+                               <option valu="artsandcraft">art sand craft</option>
+                               <option value="playingmusicalinstuments">playing musical instuments</option>
+                               <option value="logicalthinkig">Logical Thinking</option>
+                               <option value="publicspeaking">public speaking</option>
+                               <option value="creativewriting">creative writing</option>
+                               <option value="acting">acting</option>
+                               <option value="videography">videography</option>
+                               <option value="photography">photography</option>
+                               <option value="Storytelling">Story telling</option>
+                               <option value="Designthinking">Design thinking</option>
+                               <option value="Motivation Training">Motivation Training</option>
+                               <option value="leadershipdevelopment">Leadership Development</option>
+                               </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Contact No:</label>       
+                            <input type="text" class="form-control" id="contact-nos" placeholder="Enter you Contact No">
+                        </div>
+                    </form>
+                  <center><button type="submit" onclick="sub();" class="btn btn-primary" style="margin-left: 15px; margin-top: 10px">Submit</button></center>
+         
+
+<script src=
+"https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
+    </script>
+<script>
+   var firebaseConfig = {
+    apiKey: "AIzaSyC80LhwIPY8PBBfgXcU6aRrLHH_tjf8jzc",
+    authDomain: "talentdevelopment-626e5.firebaseapp.com",
+    databaseURL: "https://talentdevelopment-626e5-default-rtdb.firebaseio.com",
+    projectId: "talentdevelopment-626e5",
+    storageBucket: "talentdevelopment-626e5.appspot.com",
+    messagingSenderId: "42823914920",
+    appId: "1:42823914920:web:c21470e63fced75841399d"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+        var messagesRef = firebase.database()
+            .ref('Collected Data');
+          
+        document.getElementById('contactForm')
+            .addEventListener('submit', submitForm);
+  
+        function submitForm(e) {
+            e.preventDefault();
+  
+            // Get values
+            var firstname = getInputVal('first-name');
+       var lastname = getInputVal('last-name');
+       var Address = getInputVal('address');
+       var Address1 = getInputVal('address1');
+       var email = getInputVal('emails');
+       var District = getInputVal('district');
+       var State = getInputVal('state');   
+       var Pincode = getInputVal('pincode');
+       var Country = getInputVal('country');
+       var FatherName = getInputVal('fathers-name');
+       var MotherName = getInputVal('mothers-name');
+       var Talent_Form = getInputVal('Talent-form');
+       var ContactNo = getInputVal('contact-nos');
+       var Pass = getInputVal('password');
+            saveMessage(firstname,lastname,email, Address,Address1,District,State,Pincode,Country,FatherName,MotherName,Talent_Form,Pass,ContactNo);
+            document.getElementById('contactForm').reset();
+        }
+  
+        // Function to get get form values
+        function getInputVal(id) {
+            return document.getElementById(id).value;
+        }
+  
+        // Save message to firebase
+        function saveMessage(firstname,lastname,email, Address,Address1,District,State,Pincode,Country,FatherName,MotherName,Talent_Form,Pass,ContactNo) {
+            var newMessageRef = messagesRef.push();
+            newMessageRef.set({
+                Firstname: firstname,
+           Lastname: lastname,
+           email: email,
+          address: Address,
+          address1: Address1,
+          district: District,
+          state: State,
+          pincode: Pincode,
+          country: Country,
+          fatherName: FatherName,
+          motherName: MotherName,
+          Talent: Talent_Form,
+          Contact: ContactNo,
+          pass: Pass,
+            });
+        }
+        localStorage.setItem("email", email); 
+        localStorage.setItem("password", Pass);
+               function sub(){
+            window.alert("Your Registration has been successfully Done!!");
+            document.getElementById("Thanks").innerHTML ="We will come back to you soon";
+            window.location = "loginforstudents.html";
+        }
+</script>
+<script src="main.js"></script></body>
+</html>

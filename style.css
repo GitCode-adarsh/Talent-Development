@@ -1,0 +1,68 @@
+.div_right {
+    text-align: left;
+    width: 80%;
+    padding: 10px;
+    background-color: aqua;
+}
+.div_left {
+    text-align: left;
+    width: 80%;
+    padding: 10px;
+    background-color: red;
+}
+.det{
+    top:35%;
+    left: 20%;
+    background: linear-gradient(90deg, Maroon, #ffff00, black, darkblue);
+    background-size: 400%;
+    font-family: sans-serif;
+    font-weight: bold;
+    word-spacing: 5px;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    animation: animate 10s linear infinite;
+    }
+    @keyframes animate{
+        0%{
+            background-position: 0%;
+        }
+        100%{
+            background-position: 500%;
+        }
+    }
+.changebg{
+    background-color: rgb(182, 179, 179);
+}
+#myCarousel{
+    background-color: red;
+}
+.login
+	{
+		background: violet;
+        color: darkblue;
+		padding: 10px;
+		float: none;
+		border-radius: 15px;
+		height: fit-content;
+	}
+    .volunteer_form
+	{
+        width: 80%;
+        padding: 10px;
+		background-color: aqua;
+        color: #ff0000;
+		padding: 10px;
+		float: none;
+		border-radius: 15px;
+		height: fit-content;
+	}   
+    #myInput {
+        background-image: url('/css/searchicon.png');
+        background-position: 10px 12px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+      }

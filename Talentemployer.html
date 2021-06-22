@@ -1,0 +1,131 @@
+<html>
+
+<head>
+    <title>Talent Development</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="shortcut icon" type="image/png" href="main_logo.png">
+    <script src="main.js"></script>
+</head>
+</head>
+
+<body>
+    <nav class="navbar-inverse my_nav_bar">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <a class="navbar-brand" href="index.html">Talent Development</a>
+                <a class="navbar-brand" href="talentprograms.html">Talent Programs</a>
+                <a class="navbar-brand" href="Talentemployer.html">Academy/Event Management/Production House </a>
+                <button type="button" class="btn btn-danger" style="height: 50px;" onclick="logout();">Logout</button>
+            </ul>
+
+        </div>
+    </nav>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container mt-3" id="talent_teacher">
+        <center><span><img src="academy.png"style="height: 200px"></span>&nbsp;<span><img src="academy1.png" style="height: 200px"></span><br><br></center>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+        <table class="table" style="background-color:black;color: white;">
+            <thead>
+                <th>AcedemyName</th>
+                <th>E-mail</th>
+                <th>Contact No</th>
+                <th>Address</th>
+                <th>Services</th>
+            </thead>
+            <tbody id="tbody1">
+             
+            </tbody>
+        </table>
+
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script> 
+
+<script src=
+"https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
+    </script>
+
+    <script>
+         var firebaseConfig = {
+    apiKey: "AIzaSyAn9COma8wTAALpL1tBzmL23fUYDWmMKlQ",
+    authDomain: "academy-f16f8.firebaseapp.com",
+    databaseURL: "https://academy-f16f8-default-rtdb.firebaseio.com",
+    projectId: "academy-f16f8",
+    storageBucket: "academy-f16f8.appspot.com",
+    messagingSenderId: "693537956627",
+    appId: "1:693537956627:web:613bb2e87d3a1b7e5a30e6"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+function SelectAllData(){
+        firebase.database().ref('Collected Data').once('value', 
+        function(AllRecords){
+AllRecords.forEach(function(CurrentRecord){
+    var AcedemyName = CurrentRecord.val().Academyname;
+   var contact = CurrentRecord.val().Contact;
+   var Email= CurrentRecord.val().email;
+   var Services = CurrentRecord.val().Services;
+   var Address = CurrentRecord.val().address,address1; 
+
+    AddItemsToTable(AcedemyName,contact,Email,Services,Address);
+});
+        });
+    }
+    window.onload = SelectAllData;
+
+    function AddItemsToTable(AcedemyName,contact,Email,Services,Address){
+        var tbody = document.getElementById("tbody1");
+        var trow = document.createElement("tr");
+        var td1 = document.createElement("td");
+        var td2 = document.createElement("td");
+        var td3 = document.createElement("td");
+        var td4 = document.createElement("td");
+        var td5 = document.createElement("td");
+        td1.innerHTML= AcedemyName;
+        td2.innerHTML= Email;
+        td3.innerHTML= contact; 
+        td4.innerHTML = Address;
+        td5.innerHTML = Services;
+        trow.appendChild(td1);
+        trow.appendChild(td2);
+        trow.appendChild(td3);
+        trow.appendChild(td4);
+        trow.appendChild(td5);
+        tbody.appendChild(trow);
+    }
+    function myFunction() {
+    var input, filter, tbody, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    tbody = document.getElementById("tbody1");
+    tr = tbody.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+function logout(){
+    window.location ="loginforstudents.html";
+}
+</script>
+</body>
+
+</html>
